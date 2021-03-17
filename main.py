@@ -6,7 +6,7 @@ pygame.init()
 #Screen creation.
 screen = pygame.display.set_mode((800, 600))
 
-#Title and Icon.
+#Title and Icon. Icon image is from Flaticon.com and was created by Pixel perfect.
 pygame.display.set_caption("Negative Space")
 icon = pygame.image.load('./images/ufo.png')
 pygame.display.set_icon(icon)
