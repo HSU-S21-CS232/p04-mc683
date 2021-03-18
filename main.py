@@ -17,3 +17,7 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
+    #RGB values fill the screen.
+    screen.fill((0, 0, 128))
+    pygame.display.update()
