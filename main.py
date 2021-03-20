@@ -11,7 +11,7 @@ pygame.display.set_caption("Negative Space")
 icon = pygame.image.load('./images/ufo.png')
 pygame.display.set_icon(icon)
 
-#Player
+#Player. player.png is from Flaticon.com and was created by Freepik.
 playerImg = pygame.image.load("./images/player.png")
 playerX = 370
 playerY = 480
@@ -21,13 +21,14 @@ playerY = 480
 def player():
     screen.blit(playerImg, (playerX, playerY))
 
-#Game loop. This portion makes it so that the window stays open until we click the close (x) button.
+#Game loop. As long as running remains true, the game continues.
 running = True
 while running:
 
     #RGB values fill the screen.
     screen.fill((0, 0, 128))
 
+    #This checks for pygame events, such as clicking the close(x) button, and will change running to false to end the program.
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
