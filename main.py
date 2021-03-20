@@ -7,6 +7,9 @@ pygame.init()
 #Screen creation.
 screen = pygame.display.set_mode((800, 600))
 
+#Screen Background. Background image from freepik.com 
+background = pygame.image.load("./images/background.jpg")
+
 #Title and Icon. Icon image is from Flaticon.com and was created by Pixel perfect.
 pygame.display.set_caption("Negative Space")
 icon = pygame.image.load('./images/ufo.png')
@@ -20,7 +23,7 @@ playerX_change = 0
 playerY_change = 0
 
 
-#Enemy
+#Enemy from Flaticon.com and was created by Freepik.
 enemyImg = pygame.image.load("./images/enemy.png")
 enemyX = random.randint(0, 736)
 enemyY = random.randint(50, 150)
@@ -41,6 +44,9 @@ while running:
 
     #RGB values fill the screen.
     screen.fill((0, 0, 128))
+
+    #Background image
+    screen.blit(background, (0, 0))
 
 
 
