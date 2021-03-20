@@ -18,8 +18,8 @@ playerY = 480
 
 
 #This draws player onto the screen. First argument is the image itself, while the second argument is the coordinates.
-def player():
-    screen.blit(playerImg, (playerX, playerY))
+def player(x, y):
+    screen.blit(playerImg, (x, y))
 
 #Game loop. As long as running remains true, the game continues.
 running = True
@@ -27,6 +27,7 @@ while running:
 
     #RGB values fill the screen.
     screen.fill((0, 0, 128))
+    playerX += .1
 
     #This checks for pygame events, such as clicking the close(x) button, and will change running to false to end the program.
     for event in pygame.event.get():
@@ -35,8 +36,8 @@ while running:
 
 
 
-    #Make sure that the player is called after the screen is created, not before.
-    player()
+    #Make sure that the player is called after the screen is created, not before. This is the default starting spot.
+    player(playerX, playerY)
 
 
     #As it says this updates the screen.
