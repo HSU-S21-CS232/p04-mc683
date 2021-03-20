@@ -1,4 +1,5 @@
 import pygame
+import random
 
 #initialized pygame.
 pygame.init()
@@ -19,9 +20,19 @@ playerX_change = 0
 playerY_change = 0
 
 
+#Enemy
+enemyImg = pygame.image.load("./images/enemy.png")
+enemyX = random.randint(0, 736)
+enemyY = random.randint(50, 150)
+#enemyX_change
+
+
 #This draws player onto the screen. First argument is the image itself, while the second argument is the coordinates.
 def player(x, y):
     screen.blit(playerImg, (x, y))
+
+def enemy(x, y):
+    screen.blit(enemyImg, (x, y))
 
 #Game loop. As long as running remains true, the game continues.
 running = True
@@ -60,8 +71,17 @@ while running:
 
     #Make sure that the player is called after the screen is created, not before. This is the default starting spot.
     playerX += playerX_change
+
+    if playerX <= 0:
+        playerX = 0
+    elif playerX >= 736:
+        playerX = 736
+
     playerY += playerY_change
+
+
     player(playerX, playerY)
+    enemy(enemyX, enemyY)
 
 
     #As it says this updates the screen.
