@@ -24,7 +24,8 @@ playerY_change = 0
 enemyImg = pygame.image.load("./images/enemy.png")
 enemyX = random.randint(0, 736)
 enemyY = random.randint(50, 150)
-#enemyX_change
+enemyX_change = .3
+enemyY_change = 10
 
 
 #This draws player onto the screen. First argument is the image itself, while the second argument is the coordinates.
@@ -72,12 +73,23 @@ while running:
     #Make sure that the player is called after the screen is created, not before. This is the default starting spot.
     playerX += playerX_change
 
+    #Checking for boundary of spaceship.
     if playerX <= 0:
         playerX = 0
     elif playerX >= 736:
         playerX = 736
 
     playerY += playerY_change
+
+    #Checking for boundary of enemyy.
+    enemyX += enemyX_change
+
+    if enemyX <= 0:
+        enemyX_change = 0.3
+        enemyY += enemyY_change
+    elif enemyX >= 736:
+        enemyX_change = -0.3
+        enemyY += enemyY_change
 
 
     player(playerX, playerY)
