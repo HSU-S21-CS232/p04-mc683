@@ -55,7 +55,7 @@ laserY_change = 3
 laser_state = "ready"
 
 #score
-score_value = 0
+score_value = 1
 font = pygame.font.SysFont('arial.ttf', 32) #pygame.font.SysFont allows for me to use the font without having to have it in the folder. Google "pygame font".
 
 textX = 10
@@ -105,10 +105,10 @@ while running:
     screen.blit(background, (0, 0))
 
 
-
-    if score_value % 5 == 4 and is_score_increased == False:
-        enemy_speedoR += 1
-        enemy_speedoL -= 1
+    # This is deciding when to increase the speed.
+    if score_value % 5 == 0 and is_score_increased == False:
+        enemy_speedoR += 0.1
+        enemy_speedoL -= 0.1
         is_score_increased = True
 
     if score_value % 5 == 3:
