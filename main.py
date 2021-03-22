@@ -152,14 +152,14 @@ while running:
 
         if enemyX[i] <= 0:
             if score_value > 5:
-                enemyX_change[i] += 3
+                enemyX_change[i] = 3
                 enemyY_change[i] = enemyY_change[i]
             else:
                 enemyX_change[i] = 1
                 enemyY[i] += enemyY_change[i]
         elif enemyX[i] >= 736:
             if score_value > 5:
-                enemyX_change[i] -= 3
+                enemyX_change[i] = -3
                 enemyY[i] += enemyY_change[i]
             else:
                 enemyX_change[i] = -1
@@ -172,7 +172,7 @@ while running:
             laserY = 480
             laser_state = "ready"
             score_value += 1
-            print(score_value)
+            
             enemyX[i] = random.randint(0, 736)
             enemyY[i] = random.randint(50, 150)
 
