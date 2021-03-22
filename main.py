@@ -1,4 +1,5 @@
 import pygame
+import math
 import random
 
 #initialized pygame.
@@ -41,6 +42,7 @@ laserX_change = 0
 laserY_change = 1
 laser_state = "ready"
 
+score = 0
 
 #This draws player onto the screen. First argument is the image itself, while the second argument is the coordinates.
 def player(x, y):
@@ -53,6 +55,13 @@ def fire_laser(x, y):
     global laser_state
     laser_state = "fire"
     screen.blit(laserImg, (x + 16, y + 10)) #This draws the laser on screen.
+
+def isCollision(enemyX, enemyY, laserX, laserY):
+    distance = math.sqrt((math.pow(enemyX - laserX, 2)) + ( math.pow(enemyY - laserY, 2)))
+    if distance < 27:
+        return True
+    else:
+        return False
 
 #Game loop. As long as running remains true, the game continues.
 running = True
@@ -77,9 +86,9 @@ while running:
     #If keystroke pressed check if it is left or right.
     if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_LEFT:
-            playerX_change = -0.1
+            playerX_change = -0.5
         if event.key == pygame.K_RIGHT:
-            playerX_change = 0.1
+            playerX_change = 0.5
         if event.key == pygame.K_UP:
             if laser_state is "ready":
                 #Gets the current x coordinate of ship.
@@ -120,6 +129,17 @@ while running:
     if laser_state is "fire":
         fire_laser(laserX, laserY)
         laserY -= laserY_change
+
+
+    #Collision Part
+    collision = isCollision(enemyX, enemyY, laserX, laserY)
+    if collision:
+        laserY = 480
+        laser_state = "ready"
+        score += 1
+        print(score)
+        enemyX = random.randint(0, 736)
+        enemyY = random.randint(50, 150)
 
 
     player(playerX, playerY)
