@@ -38,7 +38,7 @@ laserImg = pygame.image.load("./images/laser.png")
 laserX = 0
 laserY = 480
 laserX_change = 0
-laserY_change = 10
+laserY_change = 1
 laser_state = "ready"
 
 
@@ -81,7 +81,11 @@ while running:
         if event.key == pygame.K_RIGHT:
             playerX_change = 0.1
         if event.key == pygame.K_UP:
-            fire_laser(playerX, laserY)
+            if laser_state is "ready":
+                #Gets the current x coordinate of ship.
+                laserX = playerX
+                fire_laser(laserX, laserY)
+
     elif event.type == pygame.KEYUP:
         if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
             playerX_change = 0
@@ -110,8 +114,11 @@ while running:
         enemyY += enemyY_change
 
     #Laser Movement
+    if laserY <= 0:
+        laserY = 480
+        laser_state = "ready"
     if laser_state is "fire":
-        fire_laser(playerX, laserY)
+        fire_laser(laserX, laserY)
         laserY -= laserY_change
 
 
