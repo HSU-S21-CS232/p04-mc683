@@ -32,7 +32,8 @@ enemyX_change = []
 enemyY_change = []
 num_of_enemies = 6
 
-enemy_speedo = 0
+enemy_speedoR = 1
+enemy_speedoL = -1
 
 for i in range(num_of_enemies):
     enemyImg.append(pygame.image.load("./images/enemy.png"))
@@ -140,6 +141,10 @@ while running:
 
     playerY += playerY_change
 
+    if score_value >= 5 and enemyX_change[i] == 1:
+        enemy_speedoR += 1
+        enemy_speedoL -= 1
+
     #Checking for boundary of enemyy.
     for i in range(num_of_enemies):
 
@@ -152,11 +157,13 @@ while running:
 
         enemyX[i] += enemyX_change[i]
 
+
+
         if enemyX[i] <= 0:
-            enemyX_change[i] = 1
+            enemyX_change[i] = enemy_speedoR
             enemyY[i] += enemyY_change[i]
         elif enemyX[i] >= 736:
-            enemyX_change[i] = -1
+            enemyX_change[i] = enemy_speedoL
             enemyY[i] += enemyY_change[i]
 
 
