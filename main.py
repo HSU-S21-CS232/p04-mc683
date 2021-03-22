@@ -92,6 +92,8 @@ def isCollision(enemyX, enemyY, laserX, laserY):
     else:
         return False
 
+is_score_increased = False
+
 #Game loop. As long as running remains true, the game continues.
 running = True
 while running:
@@ -101,6 +103,14 @@ while running:
 
     #Background image
     screen.blit(background, (0, 0))
+
+
+
+
+    if score_value % 5 and is_score_increased == False:
+        enemy_speedoR += 1
+        enemy_speedoL -= 1
+        is_score_increased = True
 
 
 
@@ -141,9 +151,7 @@ while running:
 
     playerY += playerY_change
 
-    if score_value >= 5 and enemyX_change[i] == 1:
-        enemy_speedoR += 1
-        enemy_speedoL -= 1
+
 
     #Checking for boundary of enemyy.
     for i in range(num_of_enemies):
