@@ -151,11 +151,20 @@ while running:
         enemyX[i] += enemyX_change[i]
 
         if enemyX[i] <= 0:
-            enemyX_change[i] = 1
-            enemyY[i] += enemyY_change[i]
+            if score_value > 5:
+                enemyX_change[i] += 3
+                enemyY_change[i] = enemyY_change[i]
+            else:
+                enemyX_change[i] = 1
+                enemyY[i] += enemyY_change[i]
         elif enemyX[i] >= 736:
-            enemyX_change[i] = -1
-            enemyY[i] += enemyY_change[i]
+            if score_value > 5:
+                enemyX_change[i] -= 3
+                enemyY[i] += enemyY_change[i]
+            else:
+                enemyX_change[i] = -1
+                enemyY[i] += enemyY_change[i]
+
 
         #Collision Part
         collision = isCollision(enemyX[i], enemyY[i], laserX, laserY)
