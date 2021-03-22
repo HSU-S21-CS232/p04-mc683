@@ -105,14 +105,15 @@ while running:
     screen.blit(background, (0, 0))
 
 
+    print(score_value % 5)
 
-
-    if score_value % 5 and is_score_increased == False:
+    if score_value % 5 == 4 and is_score_increased == False:
         enemy_speedoR += 1
         enemy_speedoL -= 1
         is_score_increased = True
 
-
+    if score_value % 5 == 3:
+        is_score_increased = False
 
 
 
