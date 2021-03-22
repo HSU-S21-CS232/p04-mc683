@@ -25,11 +25,20 @@ playerY_change = 0
 
 
 #Enemy from Flaticon.com and was created by Freepik.
-enemyImg = pygame.image.load("./images/enemy.png")
-enemyX = random.randint(0, 736)
-enemyY = random.randint(50, 150)
-enemyX_change = 0.2
-enemyY_change = 10
+enemyImg = []
+enemyX = []
+enemyY = []
+enemyX_change = []
+enemyY_change = []
+num_of_enemies = 6
+
+for i in range(num_of_enemies):
+    enemyImg.append(pygame.image.load("./images/enemy.png"))
+    enemyX.append(random.randint(0, 736))
+    enemyY.append(random.randint(50, 150))
+    enemyX_change.append(0.2)
+    enemyY_change.append(10)
+
 
 
 #Laser from Flaticon.com and was created by Freepik.
@@ -48,8 +57,8 @@ score = 0
 def player(x, y):
     screen.blit(playerImg, (x, y))
 
-def enemy(x, y):
-    screen.blit(enemyImg, (x, y))
+def enemy(x, y, i):
+    screen.blit(enemyImg[i], (x, y))
 
 def fire_laser(x, y):
     global laser_state
@@ -113,14 +122,28 @@ while running:
     playerY += playerY_change
 
     #Checking for boundary of enemyy.
-    enemyX += enemyX_change
+    for i in range(num_of_enemies):
+        enemyX[i] += enemyX_change[i]
 
-    if enemyX <= 0:
-        enemyX_change = 0.2
-        enemyY += enemyY_change
-    elif enemyX >= 736:
-        enemyX_change = -0.2
-        enemyY += enemyY_change
+        if enemyX[i] <= 0:
+            enemyX_change[i] = 0.2
+            enemyY[i] += enemyY_change[i]
+        elif enemyX[i] >= 736:
+            enemyX_change[i] = -0.2
+            enemyY[i] += enemyY_change[i]
+
+        #Collision Part
+        collision = isCollision(enemyX[i], enemyY[i], laserX, laserY)
+        if collision:
+            laserY = 480
+            laser_state = "ready"
+            score += 1
+            print(score)
+            enemyX[i] = random.randint(0, 736)
+            enemyY[i] = random.randint(50, 150)
+
+        enemy(enemyX[i], enemyY[i], i)
+
 
     #Laser Movement
     if laserY <= 0:
@@ -131,19 +154,11 @@ while running:
         laserY -= laserY_change
 
 
-    #Collision Part
-    collision = isCollision(enemyX, enemyY, laserX, laserY)
-    if collision:
-        laserY = 480
-        laser_state = "ready"
-        score += 1
-        print(score)
-        enemyX = random.randint(0, 736)
-        enemyY = random.randint(50, 150)
+
 
 
     player(playerX, playerY)
-    enemy(enemyX, enemyY)
+
 
 
     #As it says this updates the screen.
