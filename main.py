@@ -32,6 +32,8 @@ enemyX_change = []
 enemyY_change = []
 num_of_enemies = 6
 
+enemy_speedo = 0
+
 for i in range(num_of_enemies):
     enemyImg.append(pygame.image.load("./images/enemy.png"))
     enemyX.append(random.randint(0, 736))
@@ -151,19 +153,11 @@ while running:
         enemyX[i] += enemyX_change[i]
 
         if enemyX[i] <= 0:
-            if score_value > 5:
-                enemyX_change[i] = 3
-                enemyY_change[i] = enemyY_change[i]
-            else:
-                enemyX_change[i] = 1
-                enemyY[i] += enemyY_change[i]
+            enemyX_change[i] = 1
+            enemyY[i] += enemyY_change[i]
         elif enemyX[i] >= 736:
-            if score_value > 5:
-                enemyX_change[i] = -3
-                enemyY[i] += enemyY_change[i]
-            else:
-                enemyX_change[i] = -1
-                enemyY[i] += enemyY_change[i]
+            enemyX_change[i] = -1
+            enemyY[i] += enemyY_change[i]
 
 
         #Collision Part
@@ -172,7 +166,7 @@ while running:
             laserY = 480
             laser_state = "ready"
             score_value += 1
-            
+
             enemyX[i] = random.randint(0, 736)
             enemyY[i] = random.randint(50, 150)
 
