@@ -36,8 +36,8 @@ for i in range(num_of_enemies):
     enemyImg.append(pygame.image.load("./images/enemy.png"))
     enemyX.append(random.randint(0, 736))
     enemyY.append(random.randint(50, 150))
-    enemyX_change.append(0.2)
-    enemyY_change.append(10)
+    enemyX_change.append(1)
+    enemyY_change.append(20)
 
 
 
@@ -48,10 +48,27 @@ laserImg = pygame.image.load("./images/laser.png")
 laserX = 0
 laserY = 480
 laserX_change = 0
-laserY_change = 1
+laserY_change = 3
 laser_state = "ready"
 
-score = 0
+#score
+score_value = 0
+font = pygame.font.SysFont('arial.ttf', 32) #pygame.font.SysFont allows for me to use the font without having to have it in the folder. Google "pygame font".
+
+textX = 10
+textY = 10
+
+# Game over text
+over_font = pygame.font.SysFont('arial.ttf', 64)
+
+def show_score(x, y):
+    score = font.render("Score :" + str(score_value), True, (255, 255, 255))
+    screen.blit(score, (x, y))
+
+def game_over_text():
+    over_text = font.render("Game Over", True, (255, 255, 255))
+    screen.blit(over_text, (355, 250))
+
 
 #This draws player onto the screen. First argument is the image itself, while the second argument is the coordinates.
 def player(x, y):
@@ -123,13 +140,21 @@ while running:
 
     #Checking for boundary of enemyy.
     for i in range(num_of_enemies):
+
+        # Game Over
+        if enemyY[i] > 440:
+            for j in range(num_of_enemies):
+                enemyY[i] = 2000
+            game_over_text()
+            break
+
         enemyX[i] += enemyX_change[i]
 
         if enemyX[i] <= 0:
-            enemyX_change[i] = 0.2
+            enemyX_change[i] = 1
             enemyY[i] += enemyY_change[i]
         elif enemyX[i] >= 736:
-            enemyX_change[i] = -0.2
+            enemyX_change[i] = -1
             enemyY[i] += enemyY_change[i]
 
         #Collision Part
@@ -137,8 +162,8 @@ while running:
         if collision:
             laserY = 480
             laser_state = "ready"
-            score += 1
-            print(score)
+            score_value += 1
+            print(score_value)
             enemyX[i] = random.randint(0, 736)
             enemyY[i] = random.randint(50, 150)
 
@@ -159,7 +184,7 @@ while running:
 
     player(playerX, playerY)
 
-
+    show_score(textX, textY)
 
     #As it says this updates the screen.
     pygame.display.update()
