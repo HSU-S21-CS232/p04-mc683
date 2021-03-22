@@ -105,7 +105,6 @@ while running:
     screen.blit(background, (0, 0))
 
 
-    print(score_value % 5)
 
     if score_value % 5 == 4 and is_score_increased == False:
         enemy_speedoR += 1
