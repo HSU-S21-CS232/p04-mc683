@@ -43,7 +43,12 @@ for i in range(num_of_enemies):
     enemyX_change.append(1)
     enemyY_change.append(20)
 
-
+# Creating Boss
+bossImg = pygame.image.load("./images/boss.png")
+bossX = 20
+bossY = 50
+bossX_change = 0.1
+bossY_change = -0.1
 
 #Laser from Flaticon.com and was created by Freepik.
 #Ready - Can't see the laser yet on screen.
