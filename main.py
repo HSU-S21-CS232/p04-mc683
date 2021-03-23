@@ -160,7 +160,11 @@ while running:
 
     playerY += playerY_change
 
-
+    bossX += bossX_change
+    if bossX <= 0:
+        bossX_change = 0.1
+    elif bossX >= 736:
+        bossX_change = -0.1
 
     #Checking for boundary of enemyy.
     for i in range(num_of_enemies):
@@ -210,7 +214,7 @@ while running:
 
 
     player(playerX, playerY)
-
+    boss(bossX, bossY)
     show_score(textX, textY)
 
     #As it says this updates the screen.
