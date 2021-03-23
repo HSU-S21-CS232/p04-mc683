@@ -86,6 +86,9 @@ def player(x, y):
 def enemy(x, y, i):
     screen.blit(enemyImg[i], (x, y))
 
+def boss(x, y):
+    screen.blit(bossImg, (x, y))
+
 def fire_laser(x, y):
     global laser_state
     laser_state = "fire"
