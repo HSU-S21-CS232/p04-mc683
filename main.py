@@ -13,7 +13,7 @@ screen = pygame.display.set_mode((800, 600))
 #Screen Background. Background image from freepik.com
 background = pygame.image.load("./images/background.jpg")
 
-#background Sound
+#background Sound. Music: “Star Way”, from PlayOnLoop.com Licensed under Creative Commons by Attribution 4.0
 mixer.music.load('./music/background.wav')
 mixer.music.set_volume(0.1)
 mixer.music.play(-1)
