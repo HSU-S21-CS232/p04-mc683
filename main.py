@@ -89,12 +89,14 @@ def show_boss_health(x, y):
     screen.blit(score, (x, y))
 
 def game_over_text():
-    over_text = font.render("Game Over", True, (255, 255, 255))
-    screen.blit(over_text, (355, 250))
+    if victory != True:
+        over_text = font.render("Game Over", True, (255, 255, 255))
+        screen.blit(over_text, (355, 250))
 
 def victory_text():
-    over_text = font.render("Victory!", True, (255, 255, 255))
-    screen.blit(over_text, (355, 250))
+    if game_over != True:
+        over_text = font.render("Victory!", True, (255, 255, 255))
+        screen.blit(over_text, (355, 250))
 
 
 #This draws player onto the screen. First argument is the image itself, while the second argument is the coordinates.
@@ -130,7 +132,8 @@ def isBossCollision(bossX, bossY, laserX, laserY):
         return False
 
 is_score_increased = False
-game_not_over = True
+game_over = False
+victory = False
 
 #Game loop. As long as running remains true, the game continues.
 running = True
@@ -197,8 +200,9 @@ while running:
 
     if bossHealth == 0:
         victory_text()
-        game_not_over = False
-    else:
+        game_over = True
+        victory = True
+    elif game_over == False:
         boss(bossX, bossY)
 
     # Boss Collision
@@ -217,7 +221,7 @@ while running:
             for j in range(num_of_enemies):
                 enemyY[i] = 2000
             game_over_text()
-            game_not_over = False
+            game_over = True
             break
 
         enemyX[i] += enemyX_change[i]
@@ -242,7 +246,7 @@ while running:
 
             enemyX[i] = random.randint(0, 736)
             enemyY[i] = random.randint(50, 150)
-        if game_not_over == True:
+        if game_over == False:
             enemy(enemyX[i], enemyY[i], i)
 
 
