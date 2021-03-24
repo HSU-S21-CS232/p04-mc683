@@ -2,6 +2,7 @@ import pygame
 import pygame_menu
 import math
 import random
+from pygame import mixer
 
 #initialized pygame.
 pygame.init()
@@ -11,6 +12,11 @@ screen = pygame.display.set_mode((800, 600))
 
 #Screen Background. Background image from freepik.com
 background = pygame.image.load("./images/background.jpg")
+
+#background Sound
+mixer.music.load('./music/background.wav')
+mixer.music.set_volume(0.1)
+mixer.music.play(-1)
 
 #Title and Icon. Icon image is from Flaticon.com and was created by Pixel perfect.
 pygame.display.set_caption("Negative Space")
