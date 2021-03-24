@@ -101,6 +101,13 @@ def isCollision(enemyX, enemyY, laserX, laserY):
     else:
         return False
 
+def isBossCollision(bossX, bossY, laserX, laserY):
+    distance = math.sqrt((math.pow(bossX - laserX, 2)) + ( math.pow(bossY - laserY, 2)))
+    if distance < 27:
+        return True
+    else:
+        return False
+
 is_score_increased = False
 
 #Game loop. As long as running remains true, the game continues.
