@@ -45,6 +45,7 @@ for i in range(num_of_enemies):
 
 # Creating Boss
 bossImg = pygame.image.load("./images/boss.png")
+sadBossImg = pygame.image.load("./images/sadboss.png")
 bossX = 20
 bossY = 50
 bossX_change = 0.1
@@ -94,7 +95,10 @@ def enemy(x, y, i):
     screen.blit(enemyImg[i], (x, y))
 
 def boss(x, y):
-    screen.blit(bossImg, (x, y))
+    if bossHealth < 10:
+        screen.blit(sadBossImg, (x, y))
+    else:
+        screen.blit(bossImg, (x, y))
 
 def fire_laser(x, y):
     global laser_state
