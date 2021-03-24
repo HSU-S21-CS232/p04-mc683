@@ -104,7 +104,8 @@ def player(x, y):
     screen.blit(playerImg, (x, y))
 
 def enemy(x, y, i):
-    screen.blit(enemyImg[i], (x, y))
+    if game_over == False or victory == False:
+        screen.blit(enemyImg[i], (x, y))
 
 def boss(x, y):
     if bossHealth < 10:
@@ -208,10 +209,11 @@ while running:
     # Boss Collision
     collision = isCollision(bossX, bossY, laserX, laserY)
     if collision:
-        laserY = 480
-        laser_state = "ready"
-        score_value += 1
-        bossHealth -= 5
+        if game_over == False:
+            laserY = 480
+            laser_state = "ready"
+            score_value += 1
+            bossHealth -= 5
 
     #Checking for boundary of enemyy.
     for i in range(num_of_enemies):
@@ -239,9 +241,10 @@ while running:
         #Collision Part
         collision = isCollision(enemyX[i], enemyY[i], laserX, laserY)
         if collision:
-            laserY = 480
-            laser_state = "ready"
-            score_value += 1
+            if game_over == False:
+                laserY = 480
+                laser_state = "ready"
+                score_value += 1
 
 
             enemyX[i] = random.randint(0, 736)
