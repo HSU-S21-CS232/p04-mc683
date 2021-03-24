@@ -92,6 +92,10 @@ def game_over_text():
     over_text = font.render("Game Over", True, (255, 255, 255))
     screen.blit(over_text, (355, 250))
 
+def victory_text():
+    over_text = font.render("Victory!", True, (255, 255, 255))
+    screen.blit(over_text, (355, 250))
+
 
 #This draws player onto the screen. First argument is the image itself, while the second argument is the coordinates.
 def player(x, y):
@@ -191,6 +195,12 @@ while running:
     elif bossX >= 736:
         bossX_change = -0.1
 
+    if bossHealth == 0:
+        victory_text()
+        game_not_over = False
+    else:
+        boss(bossX, bossY)
+
     # Boss Collision
     collision = isCollision(bossX, bossY, laserX, laserY)
     if collision:
@@ -249,7 +259,7 @@ while running:
 
 
     player(playerX, playerY)
-    boss(bossX, bossY)
+
     show_score(textX, textY)
     show_boss_health(bossTextX, bossTextY)
 
