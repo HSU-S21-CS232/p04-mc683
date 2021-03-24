@@ -49,6 +49,9 @@ bossX = 20
 bossY = 50
 bossX_change = 0.1
 bossY_change = -0.1
+bossHealth = 100
+bossTextX = 690
+bossTextY = 10
 
 #Laser from Flaticon.com and was created by Freepik.
 #Ready - Can't see the laser yet on screen.
@@ -72,6 +75,10 @@ over_font = pygame.font.SysFont('arial.ttf', 64)
 
 def show_score(x, y):
     score = font.render("Score :" + str(score_value), True, (255, 255, 255))
+    screen.blit(score, (x, y))
+
+def show_boss_health(x, y):
+    score = font.render("Boss :" + str(bossHealth), True, (255, 255, 255))
     screen.blit(score, (x, y))
 
 def game_over_text():
@@ -173,6 +180,14 @@ while running:
     elif bossX >= 736:
         bossX_change = -0.1
 
+    # Boss Collision
+    collision = isCollision(bossX, bossY, laserX, laserY)
+    if collision:
+        laserY = 480
+        laser_state = "ready"
+        score_value += 1
+        bossHealth -= 5
+
     #Checking for boundary of enemyy.
     for i in range(num_of_enemies):
 
@@ -223,6 +238,7 @@ while running:
     player(playerX, playerY)
     boss(bossX, bossY)
     show_score(textX, textY)
+    show_boss_health(bossTextX, bossTextY)
 
     #As it says this updates the screen.
     pygame.display.update()
