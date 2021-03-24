@@ -120,6 +120,7 @@ def isBossCollision(bossX, bossY, laserX, laserY):
         return False
 
 is_score_increased = False
+game_not_over = True
 
 #Game loop. As long as running remains true, the game continues.
 running = True
@@ -200,6 +201,7 @@ while running:
             for j in range(num_of_enemies):
                 enemyY[i] = 2000
             game_over_text()
+            game_not_over = False
             break
 
         enemyX[i] += enemyX_change[i]
@@ -221,10 +223,11 @@ while running:
             laser_state = "ready"
             score_value += 1
 
+
             enemyX[i] = random.randint(0, 736)
             enemyY[i] = random.randint(50, 150)
-
-        enemy(enemyX[i], enemyY[i], i)
+        if game_not_over == True:
+            enemy(enemyX[i], enemyY[i], i)
 
 
     #Laser Movement
