@@ -89,12 +89,12 @@ def show_boss_health(x, y):
     screen.blit(score, (x, y))
 
 def game_over_text():
-    if victory != True:
+    if game_over == True:
         over_text = font.render("Game Over", True, (255, 255, 255))
         screen.blit(over_text, (355, 250))
 
 def victory_text():
-    if game_over != True:
+    if victory == True:
         over_text = font.render("Victory!", True, (255, 255, 255))
         screen.blit(over_text, (355, 250))
 
@@ -208,7 +208,7 @@ while running:
     # Boss Collision
     collision = isCollision(bossX, bossY, laserX, laserY)
     if collision:
-        if game_over == False:
+        if game_over == False and victory == False:
             laserY = 480
             laser_state = "ready"
             score_value += 1
@@ -218,7 +218,7 @@ while running:
     for i in range(num_of_enemies):
 
         # Game Over
-        if enemyY[i] > 440:
+        if enemyY[i] > 440 and victory == False:
             for j in range(num_of_enemies):
                 enemyY[i] = 2000
             game_over_text()
