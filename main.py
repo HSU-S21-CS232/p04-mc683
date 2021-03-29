@@ -135,10 +135,25 @@ def isBossCollision(bossX, bossY, laserX, laserY):
 is_score_increased = False
 game_over = False
 victory = False
+menu = True
 
 #Game loop. As long as running remains true, the game continues.
 running = True
 while running:
+
+    while menu:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    menu = False
+
+        screen.fill((0, 0, 0))
+        screen.blit(background, (0, 0))
+
+        pygame.display.update()
 
     #RGB values fill the screen.
     screen.fill((0, 0, 128))
