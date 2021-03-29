@@ -77,6 +77,12 @@ font = pygame.font.SysFont('arial.ttf', 32) #pygame.font.SysFont allows for me t
 textX = 10
 textY = 10
 
+# Menu Font
+menu_font = pygame.font.Font('./fonts/cubic.ttf', 32)
+
+menuX = 100
+menuY = 100
+
 # Game over text
 over_font = pygame.font.SysFont('arial.ttf', 64)
 
@@ -98,6 +104,10 @@ def victory_text():
         over_text = font.render("Victory!", True, (255, 255, 255))
         screen.blit(over_text, (355, 250))
 
+def menu_text():
+    if menu == True:
+        title = menu_font.render("Negative Space", True, (0, 0, 0))
+        screen.blit(title, (250, 250))
 
 #This draws player onto the screen. First argument is the image itself, while the second argument is the coordinates.
 def player(x, y):
@@ -152,6 +162,7 @@ while running:
 
         screen.fill((0, 0, 0))
         screen.blit(background, (0, 0))
+        menu_text()
 
         pygame.display.update()
 
