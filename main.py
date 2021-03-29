@@ -201,7 +201,6 @@ while running:
 
     if bossHealth == 0:
         victory_text()
-        game_over = True
         victory = True
     elif game_over == False:
         boss(bossX, bossY)
@@ -241,15 +240,16 @@ while running:
         #Collision Part
         collision = isCollision(enemyX[i], enemyY[i], laserX, laserY)
         if collision:
-            if game_over == False:
+            if game_over == False and victory == False:
                 laserY = 480
                 laser_state = "ready"
                 score_value += 1
 
+            if game_over == False and victory == False:
+                enemyX[i] = random.randint(0, 736)
+                enemyY[i] = random.randint(50, 150)
 
-            enemyX[i] = random.randint(0, 736)
-            enemyY[i] = random.randint(50, 150)
-        if game_over == False:
+        if game_over == False and victory == False:
             enemy(enemyX[i], enemyY[i], i)
 
 
