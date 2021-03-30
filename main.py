@@ -109,6 +109,11 @@ def menu_text():
         title = menu_font.render("Negative Space", True, (0, 0, 0))
         screen.blit(title, (250, 250))
 
+def play_again():
+    if game_over == True or victory == True:
+        yesNo = font.render("Press y to play again or n to quit.", True, (255, 255, 255))
+        screen.blit(yesNo, (355, 200))
+
 #This draws player onto the screen. First argument is the image itself, while the second argument is the coordinates.
 def player(x, y):
     screen.blit(playerImg, (x, y))
