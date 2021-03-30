@@ -91,7 +91,7 @@ def show_score(x, y):
     screen.blit(score, (x, y))
 
 def show_boss_health(x, y):
-    score = font.render("Boss :" + str(bossHealth), True, (255, 255, 255))
+    health = font.render("Boss :" + str(bossHealth), True, (255, 255, 255))
     screen.blit(score, (x, y))
 
 def game_over_text():
