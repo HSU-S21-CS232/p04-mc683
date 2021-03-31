@@ -11,8 +11,9 @@ screen = pygame.display.set_mode((800, 600))
 
 backgroundImg = pygame_menu.baseimage.BaseImage('./images/background.jpg')
 
-myTheme = Theme(background_color = (0, 0, 0, 0), title_background_color = (4, 47, 126), title_font_shadow = True, widget_padding = 25)
+myTheme = Theme(background_color = (0, 0, 0, 0), title_background_color = (0, 0, 0), title_font_shadow = True, widget_padding = 25)
 myTheme.background_color = backgroundImg
+menuBar = pygame_menu.widgets.MENUBAR_STYLE_SIMPLE
 
 #background Sound. Music: “Star Way”, from PlayOnLoop.com Licensed under Creative Commons by Attribution 4.0
 mixer.music.load('./music/background.wav')
@@ -27,10 +28,11 @@ def start_game():
 
 
 # Menu stuff from pygame-menu.readthedocs.io/en/4.0.1/
-menu = pygame_menu.Menu(500, 500, 'Howdy', theme = myTheme)
+menu = pygame_menu.Menu(600, 800, '', theme = myTheme)
 menu.add.text_input('Name:', default = 'Mikey')
 #menu.add.selector('Difficulty:', [('Hard', 1), ('Easy', 2)], onchange = set_difficulty)
 menu.add.button('Play', start_game)
 menu.add.button('Quit', pygame_menu.events.EXIT)
+
 
 menu.mainloop(screen)
