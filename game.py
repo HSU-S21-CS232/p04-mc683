@@ -5,9 +5,6 @@ import random
 from pygame import mixer
 
 def Game():
-    running = True
-    while running:
-
 
 
         #Screen creation.
