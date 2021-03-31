@@ -70,6 +70,7 @@ def Game():
         laserY_change = 3
         laser_state = "ready"
 
+
         #score
         score_value = 1
         font = pygame.font.SysFont('arial.ttf', 32) #pygame.font.SysFont allows for me to use the font without having to have it in the folder. Google "pygame font".
@@ -189,6 +190,7 @@ def Game():
                     if laser_state is "ready":
                         #Gets the current x coordinate of ship.
                         laserX = playerX
+                        laser_state = "fire"
                         fire_laser(laserX, laserY)
 
             elif event.type == pygame.KEYUP:
