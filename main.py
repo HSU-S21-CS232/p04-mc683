@@ -14,7 +14,7 @@ def set_difficulty():
 def start_game():
     Game()
 
-
+# Menu stuff from pygame-menu.readthedocs.io/en/4.0.1/
 menu = pygame_menu.Menu(300, 400, 'Howdy', theme = pygame_menu.themes.THEME_BLUE)
 menu.add.text_input('Name:', default = 'Mikey')
 menu.add.selector('Difficulty:', [('Hard', 1), ('Easy', 2)], onchange = set_difficulty)
