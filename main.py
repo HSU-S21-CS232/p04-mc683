@@ -11,6 +11,11 @@ screen = pygame.display.set_mode((800, 600))
 
 backgroundImg = pygame_menu.baseimage.BaseImage('./images/background.jpg')
 
+#Title and Icon. Icon image is from Flaticon.com and was created by Pixel perfect.
+pygame.display.set_caption("Negative Space")
+icon = pygame.image.load('./images/ufo.png')
+pygame.display.set_icon(icon)
+
 myTheme = Theme(background_color = (0, 0, 0, 0), title_background_color = (0, 0, 0), title_font_shadow = True, widget_padding = 25)
 myTheme.background_color = backgroundImg
 menuBar = pygame_menu.widgets.MENUBAR_STYLE_SIMPLE
