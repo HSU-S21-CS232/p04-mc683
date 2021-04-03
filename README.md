@@ -16,3 +16,6 @@ to zero.
 # Game Over
 The boss is protected by many aliens that not only go back and forth, but will advance towards you each time they reach the sides.
 On top of that you will notice that as your score increases the aliens' speed will increase as well.
+
+# How to Play
+The controls are simple. Use the left arrow to go left, use the right arrow to go right, and use the up arrow to fire your laser.
